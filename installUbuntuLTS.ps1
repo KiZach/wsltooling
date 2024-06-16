@@ -5,12 +5,14 @@ Param (
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$installAllSoftware
 )
 
-# create staging directory if it does not exists
+# create staging directory and download distro if it does not exists
 if (-Not (Test-Path -Path .\staging)) { $dir = mkdir .\staging }
 
-curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2004arm
+if (-Not (Test-Path -Path .\staging\ubuntuLTS.appx)) { 
+    curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2004arm
+    Copy-Item .\staging\ubuntuLTS.appx -Destination .\staging\$wslName.zip
+}
 
-Move-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
 Expand-Archive .\staging\$wslName.zip .\staging\$wslName
 
 if (-Not (Test-Path -Path $wslInstallationPath)) {
@@ -18,7 +20,6 @@ if (-Not (Test-Path -Path $wslInstallationPath)) {
 }
 wsl --import $wslName $wslInstallationPath .\staging\$wslName\install.tar.gz
 
-Remove-Item .\staging\$wslName.zip
 Remove-Item -r .\staging\$wslName\
 
 # Update the system

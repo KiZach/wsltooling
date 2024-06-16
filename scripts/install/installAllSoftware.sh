@@ -14,8 +14,8 @@ bash ${DIR_ME}/installAzCli.sh
 #echo -e "\n\nInstalling OpenVSCode Server"
 #bash ${DIR_ME}/installOpenVSCodeServer.sh
 
-#echo -e "\n\nInstalling docker & docker-compose apt"
-#bash ${DIR_ME}/installDocker.sh
+echo -e "\n\nInstalling docker & docker-compose apt"
+bash ${DIR_ME}/installDocker.sh
 
 #echo -e "\n\nInstalling OpenJDK 11 via apt..."
 #bash ${DIR_ME}/installOpenjdk.sh
@@ -44,4 +44,4 @@ bash ${DIR_ME}/installAzCli.sh
 # clean-up
 sudo apt autoremove -y
 
-#bash ${DIR_ME}/../report/listVersions.sh
+bash ${DIR_ME}/../report/listVersions.sh

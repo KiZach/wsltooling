@@ -3,8 +3,8 @@
 set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
 
-sudo apt-get update
-sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 
 sudo mkdir -p /etc/apt/keyrings
 curl -sLS https://packages.microsoft.com/keys/microsoft.asc |
@@ -19,6 +19,6 @@ Components: main
 Architectures: $(dpkg --print-architecture)
 Signed-by: /etc/apt/keyrings/microsoft.gpg" | sudo tee /etc/apt/sources.list.d/azure-cli.sources
 
-sudo apt-get update
-sudo apt-get install azure-cli
+sudo apt update
+sudo apt install -y azure-cli
 

@@ -42,6 +42,6 @@ bash ${DIR_ME}/installAzCli.sh
 #bash ${DIR_ME}/installKvm.sh
 
 # clean-up
-sudo apt autoremove
+sudo apt autoremove -y
 
 #bash ${DIR_ME}/../report/listVersions.sh

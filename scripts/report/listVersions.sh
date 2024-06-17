@@ -38,6 +38,7 @@ docker compose version
 
 echo -e "\nApps:"
 git --version
+pwsh --version
 #echo "virt-manager $(virt-manager --version)"
 #firefox --version
 #google-chrome --version

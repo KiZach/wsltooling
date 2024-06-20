@@ -4,19 +4,17 @@ set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
 
 sudo apt update
-sudo apt install -y wget apt-transport-https software-properties-common
+sudo apt install -y curl tar
 
-source /etc/os-release
+curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.12/powershell-7.3.12-linux-arm64.tar.gz
 
-wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+sudo mkdir -p /opt/microsoft/powershell/7
 
-sudo dpkg -i packages-microsoft-prod.deb
+sudo tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
 
-rm packages-microsoft-prod.deb
+sudo chmod +x /opt/microsoft/powershell/7/pwsh
 
-sudo apt update
-
-sudo apt install -y powershell
+sudo ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
 # Powershell modules that should be installed
 pwsh -Command Install-Module -Name Az -Repository PSGallery -Force
